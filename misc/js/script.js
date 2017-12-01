@@ -9,4 +9,18 @@ validateMdp2 = function(e) {
         // ici on ajoute un message d'erreur personnalisé, et du coup mdp2 devient invalide.  
         document.getElementById('mdp2').setCustomValidity('Les mots de passes doivent être égaux.');  
     }  
+} 
+
+// Calcule age.
+computeAge = function(e) {  
+    var divAge = document.getElementById('age');
+    
+    try{  
+        // Différence entre timestamp aujourdhui et timestamp de l'input.
+        var diff = Date.now() - Date.parse(document.getElementById("birthdate").valueAsDate);
+
+        divAge.value = new Date(diff).getYear() - 70;
+    } catch(e) {  
+        divAge.value = null;
+    }  
 }  

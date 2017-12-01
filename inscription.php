@@ -57,14 +57,16 @@
                 </li>  
                 
                 <li>  
-                    <label for="dateNaissance">Date naissance :</label>  
-                    <input type="date" name="dateNaissance" id="dateNaissance" required /> 
-                </li> 
-
+                    <label for="birthdate">Date de naissance:</label>  
+                    <input type="date" name="birthdate" id="birthdate" placeholder="JJ/MM/AAAA" required onchange="computeAge()"/>  
+                    <span class="form_hint">Format attendu "JJ/MM/AAAA"</span>  
+                </li>  
+                    
                 <li>  
-                    <label for="age">Age :</label>  
-                    <input type="number" name="age" id="age" disabled /> 
-                </li>
+                    <label for="age">Age:</label>  
+                    <input type="number" name="age" id="age" disabled/>  
+                    <!-- à quoi sert l'attribut disabled ? -->  
+                </li>  
 
                 <li>  
                     <label for="ville">Ville :</label>  
