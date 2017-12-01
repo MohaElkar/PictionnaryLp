@@ -19,7 +19,7 @@ computeAge = function(e) {
         // Différence entre timestamp aujourdhui et timestamp de l'input.
         var diff = Date.now() - Date.parse(document.getElementById("birthdate").valueAsDate);
 
-        divAge.value = new Date(diff).getYear() - 70;
+        divAge.value = new Date(diff).getYear() -70;
     } catch(e) {  
         divAge.value = null;
     }  
