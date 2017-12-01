@@ -18,15 +18,17 @@
                     <span class="form_hint">Format attendu "name@something.com"</span>  
                 </li>  
                 
-                <li>  
-                    <label for="mdp">Mot de passe :</label>  
-                    <input type="password" name="mdp" id="mdp" placeholder="Votre prénom" required/>    
+               <li>  
+                    <label for="mdp1">Mot de passe :</label>  
+                    <input type="password" name="password" id="mdp1" required placeholder="Mot de passe." pattern="[a-zA-Z0-9]{6,8}" onkeyup="validateMdp2()" title="Le mot de passe doit contenir de 6 à 8 caractères alphanumériques.">  
+                    <span class="form_hint">De 6 à 8 caractères alphanumériques.</span>  
                 </li> 
 
                 <li>  
-                    <label for="mdp">Mot de passe :</label>  
-                    <input type="password" name="mdp" id="mdp" placeholder="Votre prénom" required/>    
-                </li> 
+                    <label for="mdp2">Confirmez mot de passe :</label>  
+                    <input type="password" id="mdp2" required onkeyup="validateMdp2()" required placeholder="Vérification mot de passe.">  
+                    <span class="form_hint">Les mots de passes doivent être égaux.</span>  
+                </li>
 
                 <li>  
                     <label for="bom">Nom :</label>  
@@ -90,5 +92,7 @@
             </ul> 
 
         </form>  
+
+        <script type="text/javascript" src="misc/js/script.js"></script>
     </body>  
 </html>  
