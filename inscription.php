@@ -8,6 +8,13 @@
     
     <body>        
         <h2>Inscrivez-vous</h2>  
+
+
+        <?php // Si le paramete GET erreur est detecté on affiche une alerte.
+            if (isset($_GET["erreur"]) && !empty($_GET["erreur"])): 
+        ?>
+            <div class="alert alert-danger"> <?php echo($_GET["erreur"]); ?> </div>
+        <?php endif; ?>
         
         <form class="inscription" action="req_inscription.php" method="post" name="inscription">  
             <span class="required_notification">Les champs obligatoires sont indiqués par *</span>  
@@ -15,7 +22,7 @@
             <ul>  
                 <li>  
                     <label for="email">E-mail :</label>  
-                    <input type="email" name="email" id="email" autofocus required/>  
+                    <input type="email" name="email" id="email" autofocus required value="<?php echo isset($_GET['email']) ? $_GET['email'] : "" ?>"/>  
                     <span class="form_hint">Format attendu "name@something.com"</span>  
                 </li>  
                 
@@ -32,56 +39,56 @@
                 </li>
 
                 <li>  
-                    <label for="bom">Nom :</label>  
-                    <input type="text" name="nom" id="nom" placeholder="Votre nom"/> 
+                    <label for="nom">Nom :</label>  
+                    <input type="text" name="nom" id="nom" placeholder="Votre nom" value="<?php echo isset($_GET['nom']) ? $_GET['nom'] : "" ?>"/> 
                 </li>  
 
                 <li>  
                     <label for="prenom">Prénom :</label>  
-                    <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required/> 
+                    <input type="text" name="prenom" id="prenom" placeholder="Votre prénom" required value="<?php echo isset($_GET['prenom']) ? $_GET['prenom'] : "" ?>"/> 
                 </li>  
 
                 <li>  
                     <label for="telephone">Téléphone :</label>  
-                    <input type="tel" name="telephone" id="telephone" /> 
+                    <input type="tel" name="tel" id="telephone" value="<?php echo isset($_GET['tel']) ? $_GET['tel'] : "" ?>" /> 
                 </li> 
 
                 <li>  
                     <label for="site">Site web :</label>  
-                    <input type="url" name="site" id="site" /> 
+                    <input type="url" name="website" id="site" value="<?php echo isset($_GET['website']) ? $_GET['website'] : "" ?>"/> 
                 </li>  
 
                 <li>  
                     <label for="sexe">Sexe :</label>  
-                    <input type="radio" name="sexe" value="Femme" /> Femme
-                    <input type="radio" name="sexe" value="Homme" /> Homme
+                    <input type="radio" name="sexe" value="F" <?php echo isset($_GET['sexe']) && $_GET["sexe"] == 'F' ? "checked" : "" ?> /> Femme
+                    <input type="radio" name="sexe" value="H" <?php echo isset($_GET['sexe']) && $_GET["sexe"] == 'H' ? "checked" : "" ?> /> Homme
                 </li>  
                 
                 <li>  
                     <label for="birthdate">Date de naissance:</label>  
-                    <input type="date" name="birthdate" id="birthdate" placeholder="JJ/MM/AAAA" required onchange="computeAge()"/>  
+                    <input type="date" name="birthdate" id="birthdate" placeholder="JJ/MM/AAAA" required onchange="computeAge()" value="<?php echo isset($_GET['birthdate']) ? $_GET['birthdate'] : "" ?>"/>  
                     <span class="form_hint">Format attendu "JJ/MM/AAAA"</span>  
                 </li>  
                     
                 <li>  
                     <label for="age">Age:</label>  
-                    <input type="number" name="age" id="age" disabled/>  
+                    <input type="number" name="age" id="age" disabled />  
                     <!-- à quoi sert l'attribut disabled ? -->  
                 </li>  
 
                 <li>  
                     <label for="ville">Ville :</label>  
-                    <input type="text" name="ville" id="ville" /> 
+                    <input type="text" name="ville" id="ville" value="<?php echo isset($_GET['ville']) ? $_GET['ville'] : "" ?>" /> 
                 </li> 
 
                 <li>  
                     <label for="taille">Taille :</label>  
-                    <input type="range" name="taille" value="0" max="2.50" min="0" step="0.01">
+                    <input type="range" name="taille" max="2.50" min="0" step="0.01" value="<?php echo isset($_GET['taille']) ? $_GET['taille'] : 0 ?>">
                 </li> 
 
                 <li>  
                     <label for="color">Couleur préférée :</label>  
-                    <input type="color" name="couleur" id="color" value="#000000">
+                    <input type="color" name="couleur" id="color" value="#000000" value="<?php echo isset($_GET['couleur']) ? $_GET['couleur'] : "#000000" ?>">
                 </li> 
 
                 <li>  

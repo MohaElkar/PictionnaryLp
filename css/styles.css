@@ -145,3 +145,13 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     -o-box-shadow: 0 0 10px 5px #356b0b inset;
 
 }
+
+
+/* Erreur inscription */
+.alert{
+    color: #a94442;
+    background-color: #f2dede;
+    padding:15px;
+    border-radius:5px;
+    border:1px solid #ebccd1;
+}
