@@ -84,8 +84,18 @@
                 </li> 
 
                 <li>  
-                    <label for="photo">Photo de profil :</label>  
-                    <input type="file" name="photo" id="photo" value="#000000">
+                    <label for="profilepicfile">Photo de profil:</label>  
+                    <input type="file" id="profilepicfile" onchange="loadProfilePic(this)"/>  
+                    <!-- l'input profilepic va contenir le chemin vers l'image sur l'ordinateur du client -->  
+                    <!-- on ne veut pas envoyer cette info avec le formulaire, donc il n'y a pas d'attribut name -->  
+                    <span class="form_hint">Choisissez une image.</span>  
+                    <input type="hidden" name="profilepic" id="profilepic"/>  
+                    <!-- l'input profilepic va contenir l'image redimensionnée sous forme d'une data url -->   
+                    <!-- c'est cet input qui sera envoyé avec le formulaire, sous le nom profilepic -->  
+                    <canvas id="preview" width="0" height="0" style="border:1px solid #000000;"></canvas>  
+                    <!-- le canvas (nouveauté html5), c'est ici qu'on affichera une visualisation de l'image. -->  
+                    <!-- on pourrait afficher l'image dans un élément img, mais le canvas va nous permettre également   
+                    de la redimensionner, et de l'enregistrer sous forme d'une data url-->             
                 </li> 
 
                 <li>  

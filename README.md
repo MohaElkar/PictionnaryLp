@@ -31,4 +31,8 @@ http://miageprojet2.unice.fr/index.php?title=User:Max/LPSIL_IDSE_-_Web_Multim%C3
 	Car ce champ n'est pas utilise coté serveur.
 
 - quel scénario justifie qu'on ait ajouté l'écouter validateMdp2() à l'évènement onkeyup de l'input mdp1 ?
-	Pour permettre de valider l'input à chaque modification de l'input.
+	Pour permettre de valider l'input à chaque modification de l'input. 
+
+// Question champ date naissance :
+- à quoi sert l'attribut disabled ?
+	Il permet de rendre le champs read only. Cad que on ne peut pas modifier sa valeur.
