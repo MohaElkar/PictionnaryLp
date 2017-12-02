@@ -3,6 +3,7 @@
     <head>  
         <meta charset=utf-8 />  
         <title>Pictionnary - Inscription</title>  
+        <link rel="stylesheet" media="screen" href="css/styles.css">  
     </head>  
     
     <body>        
@@ -105,6 +106,6 @@
 
         </form>  
 
-        <script type="text/javascript" src="misc/js/script.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
     </body>  
 </html>  
