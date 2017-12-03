@@ -36,3 +36,7 @@ http://miageprojet2.unice.fr/index.php?title=User:Max/LPSIL_IDSE_-_Web_Multim%C3
 // Question champ date naissance :
 - à quoi sert l'attribut disabled ?
 	Il permet de rendre le champs read only. Cad que on ne peut pas modifier sa valeur.
+
+// Dessiner et redessiner / page paint.php
+- à quoi servent ces champs hidden ? 
+	Ils permettent de passer des informations à la requete POST du formulaire sans pour autant les afficher à l'ecran. 
