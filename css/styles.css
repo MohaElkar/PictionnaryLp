@@ -1,13 +1,13 @@
 /* === Remove input autofocus webkit === */
-*:focus {outline: none;}
-
+/**:focus {outline: none;}
+*/
 /* === Form Typography === */
-body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;}
+/*body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;}
 .inscription h2, .inscription label {font-family:Georgia, Times, "Times New Roman", serif;}
-.form_hint, .required_notification {font-size: 11px;}
+.form_hint, .required_notification {font-size: 11px;}*/
 
 /* === List Styles === */
-.inscription ul {
+/*.inscription ul {
     width:750px;
     list-style-type:none;
     list-style-position:outside;
@@ -21,10 +21,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 }
 .inscription li:first-child, .inscription li:last-child {
     border-bottom:1px solid #777;
-}
+}*/
 
 /* === Form Header === */
-.inscription h2 {
+/*.inscription h2 {
     margin:0;
     display: inline;
 }
@@ -33,10 +33,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     margin:5px 0 0 0;
     display:inline;
     float:right;
-}
+}*/
 
 /* === Form Elements === */
-.inscription label {
+/*.inscription label {
     width:150px;
     margin-top: 3px;
     display:inline-block;
@@ -48,10 +48,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     width:220px;
     padding:5px 8px;
 }
-#submit {margin-left:156px;}
+#submit {margin-left:156px;}*/
 
 /* form element visual styles */
-.inscription input, .inscription textarea {
+/*.inscription input, .inscription textarea {
     border:1px solid #aaa;
     box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
     border-radius:2px;
@@ -66,10 +66,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     border:1px solid #555;
     box-shadow: 0 0 3px #aaa;
     padding-right:70px;
-}
+}*/
 
 /* === HTML5 validation styles === */
-.inscription input:required, .inscription textarea:required {
+/*.inscription input:required, .inscription textarea:required {
     background: #fff url(images/red_asterisk.png) no-repeat 98% center;
 }
 .inscription input:required:valid, .inscription textarea:required:valid {
@@ -81,10 +81,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     background: #fff url(images/invalid.png) no-repeat 98% center;
     box-shadow: 0 0 5px #d45252;
     border-color: #b03535
-}
+}*/
 
 /* === Form hints === */
-.form_hint {
+/*.form_hint {
     background: #d45252;
     border-radius: 3px 3px 3px 3px;
     color: white;
@@ -94,7 +94,7 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     position: absolute; /* allows proper formatting if hint is two lines */
     display: none;
 }
-.form_hint::before {
+/*.form_hint::before {
     content: "\25C0";
     color:#d45252;
     position: absolute;
@@ -103,10 +103,10 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
 }
 .inscription input:focus + .form_hint {display: inline;}
 .inscription input:required:valid + .form_hint {background: #28921f;}
-.inscription input:required:valid + .form_hint::before {color:#28921f;}
+.inscription input:required:valid + .form_hint::before {color:#28921f;}*/
 
 /* === Button Style === */
-#submit  {
+/*#submit  {
     background-color: #68b12f;
     background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
     background: -webkit-linear-gradient(top, #68b12f, #50911e);
@@ -144,6 +144,15 @@ body {font: 14px/21px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", san
     -ms-box-shadow: 0 0 10px 5px #356b0b inset;
     -o-box-shadow: 0 0 10px 5px #356b0b inset;
 
+}*/
+
+.inscription{}
+.inscription ul{
+    padding: 0;
+}
+.inscription ul li{
+    list-style: none;
+    margin-bottom: 20px;
 }
 
 
