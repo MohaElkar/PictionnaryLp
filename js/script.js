@@ -175,6 +175,9 @@ window.onload = function() {
             command.y= mousePos.y;  
             command.taille = size; 
             command.color = color; 
+             console.log(command);
+
+            drawingCommands.push(command); 
 
             // Trait continu.
             context.lineWidth = command.taille;
