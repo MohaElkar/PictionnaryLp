@@ -21,7 +21,8 @@
             $err = $sql->errorInfo();
             print_r($err);
         } else {
-        	// redirection vers la page paint avec message succes.
+        	// redirection vers la page paint avec message success.
+        	header("Location: paint.php?success=".urlencode("Votre dessin a été enregistré"));
         }
 	    
 	    $dbh = null;

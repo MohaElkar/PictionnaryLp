@@ -9,6 +9,15 @@
 
 <?php else: ?>
 
+    <!-- Affichage message succes -->
+    <?php if (isset($_GET["success"])): ?>
+    
+    <div class="alert alert-success">
+        <p><?= $_GET["success"] ?></p>
+    </div>
+
+    <?php endif; ?>
+
     <canvas id="myCanvas"></canvas>  
       
     <form name="tools" action="req_paint.php" method="post">  
