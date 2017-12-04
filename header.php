@@ -37,10 +37,13 @@
 	    				<button type="submit" class="btn btn-success">Se connecter</button>
 	    				<a href="inscription.php" class="btn btn-info">Inscription</a>
 	    			</form>
-		    		<?php else: ?>
-		    			<p>Bienvenue <?= $_SESSION["nom"] ?></p>
-		    			<img src="<?= $_SESSION["profilepic"] ?>" width="20" height="20">
-		    			<a href="logout.php">Se déconnecter</a>
+
+		    		<?php else: ?>	    			
+		    			<div class="userInfo">
+			    			<img src="<?= $_SESSION["profilepic"] ?>" width="20" height="20">
+			    			<p>Bienvenue <?= $_SESSION["nom"] ?></p>
+							<a href="logout.php">Se déconnecter</a>	    			
+		    			</div>
 		    		<?php endif; ?>
 	    		</div><!--/.navbar-collapse -->
 
