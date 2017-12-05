@@ -91,7 +91,8 @@
                         <!-- l'input profilepic va contenir le chemin vers l'image sur l'ordinateur du client -->  
                         <!-- on ne veut pas envoyer cette info avec le formulaire, donc il n'y a pas d'attribut name -->  
                         <span class="form_hint">Choisissez une image.</span>  
-                        <input type="hidden" name="profilepic" id="profilepic"/>  
+                        <!--<input type="hidden" name="profilepic" id="profilepic"/>-->  
+                        <img  style="display: none;" name="profilepic" id="profilepic"/>  
                         <!-- l'input profilepic va contenir l'image redimensionnée sous forme d'une data url -->   
                         <!-- c'est cet input qui sera envoyé avec le formulaire, sous le nom profilepic -->  
                         <canvas id="preview" width="0" height="0" style="border:1px solid #000000;"></canvas>  
@@ -145,7 +146,7 @@
         var ctx = canvas.getContext("2d");  
 
         // on réinitialise le canvas: on l'efface, et déclare sa largeur et hauteur à 0  
-        ctx.fillStyle="#FF0000";
+        ctx.setColoro="#FF0000";
         ctx.fillRect(0,0,canvas.width,canvas.height); 
         canvas.width=0;  
         canvas.height=0;  
@@ -154,7 +155,7 @@
         var file = document.getElementById("profilepicfile").files[0];  
         
         // l'élément img va servir à stocker l'image temporairement  
-        var img = document.createElement("img");  
+        // var img = document.createElement("img");  
 
         // l'objet de type FileReader nous permet de lire les données du fichier.  
         var reader = new FileReader();  
@@ -169,10 +170,12 @@
             }  
             else 
             {
+                var type = file.type;
                 // le callback sera appelé par la méthode getAsDataURL, donc le paramètre de callback e est une url qui contient   
                 // les données de l'image. On modifie donc la source de l'image pour qu'elle soit égale à cette url  
                 // on aurait fait différemment si on appelait une autre méthode que getAsDataURL.  
-                img.src = e.target.result; 
+                var img = document.getElementById('profilepic');
+                img.src = e.target.result;
                 
                 // le champs profilepicfile est valide  
                 document.getElementById("profilepicfile").setCustomValidity("");  
@@ -194,13 +197,17 @@
 
                 // on dessine l'image dans le canvas à la position 0,0 (en haut à gauche)  
                 // et avec une largeur de width et une hauteur de height  
-                ctx.drawImage(img, 0, 0, width, height);  
-
-                // on exporte le contenu du canvas (l'image redimensionnée) sous la forme d'une data url  
-                var dataurl = canvas.toDataURL("image/png");  
+               /* var imgee*/
+                setTimeout(function(){
+                    ctx.drawImage(img, 0, 0,  canvas.width, canvas.height); 
+                }, 3000);
                 
+                //ctx.drawImage(img, 0, 0,  canvas.width, canvas.height);
+                // on exporte le contenu du canvas (l'image redimensionnée) sous la forme d'une data url  
+                var dataurl = canvas.toDataURL(type);  
+                console.log(dataurl);
                 // on donne finalement cette dataurl comme valeur au champs profilepic  
-                document.getElementById("profilepic").value = dataurl;  
+                document.getElementById("profilepic").value = img.src;  
             };  
         }  
 
