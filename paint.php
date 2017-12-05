@@ -145,6 +145,8 @@
             var command = {};
             command.command = "clear";
 
+            drawingCommands.push(command);
+
             // ici, effacer le context, grace à la méthode clearRect.                
             context.clearRect(0,0,canvas.width, canvas.height); 
         };  
