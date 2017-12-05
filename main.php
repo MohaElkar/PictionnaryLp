@@ -20,8 +20,7 @@
 
 	<h2>Vos dessins :</h2>
 
-	<div class="row">
-		
+	<div class="row">		
 		<?php 
 			try {
 			    // Connect to server and select database.

@@ -19,6 +19,9 @@
     $couleur    = stripslashes($_POST['couleur']);
     $profilepic = stripslashes($_POST['profilepic']);
 
+    echo $profilepic;
+    exit();
+
     try {
         // Connect to server and select database.
         //$dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
@@ -77,7 +80,7 @@
                 // ensuite on requête à nouveau la base pour l'utilisateur qui vient d'être inscrit, et 
                 $sql = $dbh->query("SELECT u.id, u.email, u.nom, u.prenom, u.couleur, u.profilepic FROM USERS u WHERE u.email='".$email."'");
                 if ($sql->rowCount()<1) {
-                    header("Location: main.php?erreur=".urlencode("un problème est survenu"));
+                    header("Location: error.php?erreur=".urlencode("un problème est survenu"));
                 }
                 else {
                     // on récupère la ligne qui nous intéresse avec $sql->fetch(), 
