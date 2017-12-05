@@ -2,11 +2,19 @@
 
 <div id="dessins">
 
+	<?php if (isset($_GET["erreurs"])): ?>
+
+		<div class="alert alert-danger">
+			<p><?= $_GET["erreurs"]; ?></p>
+		</div>
+
+	<?php endif; ?>
+
 	<?php if (!isset($_SESSION["id"])): ?>
 	
-	<div class="alert alert-info">
-		<p>Connectez-vous pour voir vos dessins</p>
-	</div>
+		<div class="alert alert-info">
+			<p>Connectez-vous pour voir vos dessins</p>
+		</div>
 
 	<?php else: ?>
 
