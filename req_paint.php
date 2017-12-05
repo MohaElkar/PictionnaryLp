@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include("PDOConnexion.php");
 
 	$id_user 	= $_SESSION["id"]; 
 	$commandes 	= stripslashes($_POST["drawingCommands"]);
@@ -7,8 +8,9 @@
 
 	try {
 	    // Connect to server and select database.
-	    $dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
-
+	    //$dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
+		$dbh = PDOConnexion::getInstance();
+	   
 	    $sql = $dbh->prepare("INSERT INTO drawings (id, id_user, commande, dessin) VALUES (NULL, :id_user, :commandes, :picture)");
 
         $sql->bindValue(":id_user", $id_user);

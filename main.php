@@ -25,7 +25,7 @@
 		<?php 
 			try {
 			    // Connect to server and select database.
-			    $dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
+			    $dbh = PDOConnexion::getInstance();
 
 			    // Vérifier si un utilisateur avec cette adresse email existe dans la table.
 			    // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.
