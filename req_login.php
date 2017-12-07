@@ -36,7 +36,7 @@
 	    }
 	    else {
 	     	// aucun utilisateur trouvé
-            header('Location: main.php?erreurs='.urlencode("Aucun utilisateur trouvé."));
+            header('Location: error.php?erreur='.urlencode("Aucun utilisateur trouvé."));
 	    }
 	    
 	    $dbh = null;
