@@ -19,9 +19,6 @@
     $couleur    = stripslashes($_POST['couleur']);
     $profilepic = stripslashes($_POST['profilepic']);
 
-    echo $profilepic;
-    exit();
-
     try {
         // Connect to server and select database.
         //$dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');

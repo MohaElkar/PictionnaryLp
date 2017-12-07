@@ -91,8 +91,9 @@
                         <!-- l'input profilepic va contenir le chemin vers l'image sur l'ordinateur du client -->  
                         <!-- on ne veut pas envoyer cette info avec le formulaire, donc il n'y a pas d'attribut name -->  
                         <span class="form_hint">Choisissez une image.</span>  
-                        <!--<input type="hidden" name="profilepic" id="profilepic"/>-->  
-                        <img  style="display: none;" name="profilepic" id="profilepic"/>  
+                        
+                        <input type="hidden" name="profilepic" id="profilepic"/>
+                        <img  style="display: none;" id="tmpProfilePic"/>  
                         <!-- l'input profilepic va contenir l'image redimensionnée sous forme d'une data url -->   
                         <!-- c'est cet input qui sera envoyé avec le formulaire, sous le nom profilepic -->  
                         <canvas id="preview" width="0" height="0" style="border:1px solid #000000;"></canvas>  
@@ -174,38 +175,35 @@
                 // le callback sera appelé par la méthode getAsDataURL, donc le paramètre de callback e est une url qui contient   
                 // les données de l'image. On modifie donc la source de l'image pour qu'elle soit égale à cette url  
                 // on aurait fait différemment si on appelait une autre méthode que getAsDataURL.  
-                var img = document.getElementById('profilepic');
+                var img = document.getElementById('tmpProfilePic');
                 img.src = e.target.result;
+
+                // On met la valeur à l'input pour le bon fonctionnement du formulaire.
+                document.getElementById('profilepic').value = img.src;
                 
                 // le champs profilepicfile est valide  
                 document.getElementById("profilepicfile").setCustomValidity("");  
 
                 var MAX_WIDTH = 96;  
                 var MAX_HEIGHT = 96;  
-                var width = img.width;  
-                var height = img.height;  
 
-                // A FAIRE: si on garde les deux lignes suivantes, on rétrécit l'image mais elle sera déformée  
-                // Vous devez supprimer ces lignes, et modifier width et height pour:  
-                //    - garder les proportions,   
-                //    - et que le maximum de width et height soit égal à 96  
                 var width = MAX_WIDTH;  
-                var height = MAX_HEIGHT;  
-                  
+                var tmp = img.width/MAX_WIDTH;
+                var height = img.height/tmp;
+
                 canvas.width = width;  
-                canvas.height = height;  
+                canvas.height = height;
 
                 // on dessine l'image dans le canvas à la position 0,0 (en haut à gauche)  
                 // et avec une largeur de width et une hauteur de height  
                /* var imgee*/
                 setTimeout(function(){
-                    ctx.drawImage(img, 0, 0,  canvas.width, canvas.height); 
-                }, 3000);
+                    ctx.drawImage(img, 0, 0,  width, height); 
+                }, 1000);
                 
-                //ctx.drawImage(img, 0, 0,  canvas.width, canvas.height);
                 // on exporte le contenu du canvas (l'image redimensionnée) sous la forme d'une data url  
                 var dataurl = canvas.toDataURL(type);  
-                console.log(dataurl);
+
                 // on donne finalement cette dataurl comme valeur au champs profilepic  
                 document.getElementById("profilepic").value = img.src;  
             };  
