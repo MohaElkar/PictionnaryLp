@@ -42,12 +42,21 @@
 	    			</form>
 
 		    		<?php else: ?>	    			
-		    			<div class="userInfo">
-			    			<img src="<?= $_SESSION["profilepic"] ?>" width="20" height="20">
-			    			<p>Bienvenue <?= $_SESSION["nom"] ?></p>
-							<a href="logout.php">Se déconnecter</a>	    			
-		    			</div>
+		    			<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+									<img src="<?= $_SESSION["profilepic"] ?>" width="20" height="20">
+									Bienvenue <?= $_SESSION["nom"] ?> 
+									<span class="caret"></span>
+								</a>
+
+								<ul class="dropdown-menu">			            
+									<li><a href="logout.php">Déconnexion</a></li>
+								</ul>
+							</li>
+						</ul>
 		    		<?php endif; ?>
+		    		
 	    		</div><!--/.navbar-collapse -->
 
 	    	</div>
