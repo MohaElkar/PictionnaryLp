@@ -10,12 +10,15 @@
 
 	<?php endif; ?>
 
-	<?php if (!isset($_SESSION["id"])): ?>
-	
+
+	<?php 
+		// L'utilisateur n'est pas connecté.
+		// Affichage d'un message d'erreur.
+		if (!isset($_SESSION["id"])): 
+	?>	
 		<div class="alert alert-info">
 			<p>Connectez-vous pour voir vos dessins</p>
 		</div>
-
 	<?php else: ?>
 
 	<h2>Vos dessins :</h2>
@@ -23,24 +26,31 @@
 	<div class="row">		
 		<?php 
 			try {
-			    // Connect to server and select database.
+				// Connexion à la db
 			    $dbh = PDOConnexion::getInstance();
 
-			    // Vérifier si un utilisateur avec cette adresse email existe dans la table.
-			    // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.
+			    // On récupère les dessins de l'utilisateur connecté.
 			    $sql = $dbh->prepare("select * from drawings where id_user = :id_user");
 			    $sql->bindValue(":id_user", $_SESSION["id"]);    
 			    $sql->execute();
 			   
 			    $res = $sql->fetchAll();
 
-			    for($i = 0; $i<count($res); $i++){
-			    	echo '<div class="col-xs-6 col-md-3">';
-				    	echo '<a href="guess.php?id='.$res[$i]["id"].'" class="thumbnail">';
-				    		echo '<img src="'.$res[$i]["dessin"].'" alt="Dessin n°'.$res[$i]["id"].'">';
-				    	echo '</a>';
-			    	echo '</div>';
-			    }
+			    // Si aucun dessin n'est trouvé.
+			    if(count($res) === 0){
+			    	echo '<div class="col-lg-12"><div class="alert alert-info">';
+						echo '<p>Aucun dessin trouvé.</p>';
+					echo '</div></div>';
+			    }else{
+			    	// On affiche chaque dessin.
+				    for($i = 0; $i<count($res); $i++){
+				    	echo '<div class="col-xs-6 col-md-3">';
+					    	echo '<a href="guess.php?id='.$res[$i]["id"].'" class="thumbnail">';
+					    		echo '<img src="'.$res[$i]["dessin"].'" alt="Dessin n°'.$res[$i]["id"].'">';
+					    	echo '</a>';
+				    	echo '</div>';
+				    }
+			    }			    
 
 			    $dbh = null;
 			    
