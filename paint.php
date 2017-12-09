@@ -9,7 +9,7 @@
 
 <?php else: ?>
 
-    <!-- Affichage message succes -->
+    <!-- Affichage message success -->
     <?php if (isset($_GET["success"])): ?>
     
     <div class="alert alert-success">
@@ -18,21 +18,43 @@
 
     <?php endif; ?>
 
-    <canvas id="myCanvas" style="border:1px solid #000000;"></canvas>  
-      
-    <form name="tools" action="req_paint.php" method="post">  
-        <!-- ici, insérez un champs de type range avec id="size", pour choisir un entier entre 0 et 4) -->  
-        <input type="range" id="size" value="0" min="0" max="3">
-        <!-- ici, insérez un champs de type color avec id="color", et comme valeur l'attribut  de session couleur (à l'aide d'une commande php echo).) -->  
-        <input type="color" id="color" value="#<?= $_SESSION["couleur"] ?>">
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Canvas :</h2>
+            <canvas id="myCanvas"></canvas>  
+        </div>
 
-        <input id="restart" type="button" value="Recommencer"/>  
-        
-        <input type="hidden" id="drawingCommands" name="drawingCommands"/>  
-        <!-- à quoi servent ces champs hidden ? -->  
-        <input type="hidden" id="picture" name="picture"/>  
-        <input id="validate" type="submit" value="Valider"/>  
-    </form>  
+        <div class="col-lg-6">
+            <h2>Outils :</h2>
+
+            <form name="tools" action="req_paint.php" method="post">  
+                <ul class="listInputDessin">
+                    <li>  
+                        <label for="size">Taille pinceau :</label>  
+                        <input type="range" class="form-control" id="size" value="0" min="0" max="3">
+                    </li> 
+
+                    <li>  
+                        <label for="color">Couleur pinceau :</label>  
+                        <input type="color" class="form-control" id="color" value="#<?= $_SESSION["couleur"] ?>">
+                    </li> 
+
+                    <li>  
+                        <label for="effacer">Effacer :</label>  
+                        <input id="restart" type="button" class="btn btn-default btn-block" id="effacer" value="Recommencer"/> 
+                    </li> 
+
+                    <li>  
+                        <label for="effacer">Sauvegarder :</label>  
+                        <input id="validate" type="submit" class="btn btn-primary btn-block" value="Sauvegarder le dessin"/>  
+                    </li>  
+                </ul>
+                
+                <input type="hidden" id="drawingCommands" name="drawingCommands"/>  
+                <input type="hidden" id="picture" name="picture"/>  
+            </form>  
+        </div>
+    </div>
 
 <?php endif; ?>
 

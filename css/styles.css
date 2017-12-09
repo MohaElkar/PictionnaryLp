@@ -165,16 +165,16 @@
     border:1px solid #ebccd1;
 }
 
-/*HEADER*/
-.userInfo{
-    float:right;
-    color:#fff;
-    padding:15px 0;
+#myCanvas{
+    border:1px solid #000000;
+    border-radius: 5px;
 }
-.userInfo p{
-    float:left;
-    margin-bottom: 0;
+
+/*paint.php*/
+.listInputDessin{
+    list-style: none;
+    padding: 0;
 }
-.userInfo a{
-   color:#fff;
+.listInputDessin li{
+    margin-bottom: 20px;
 }
