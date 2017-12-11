@@ -20,17 +20,13 @@
     $profilepic = stripslashes($_POST['profilepic']);
 
     try {
-        // Connect to server and select database.
-        //$dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
+        // Connexion à la base de donné.
         $dbh = PDOConnexion::getInstance();
-
         // Vérifier si un utilisateur avec cette adresse email existe dans la table.
-        // En SQL: sélectionner tous les tuples de la table USERS tels que l'email est égal à $email.
-        $sql = $dbh->prepare("select email from users where email = :email");
-        $sql->bindValue(":email", $email);    
-        $sql->execute();
-        
-        if ( $sql->rowCount() >=1) {
+        $req = $dbh->executer("select email from users where email = :email", array( ':email' => $email) );          
+
+        // Un utilisateur existe deja avec la meme adresse email.
+        if ( $req->rowCount() >=1) {
             header("Location: inscription.php?erreur=".urlencode("L'adresse email existe déjà")
                 ."&email=".htmlspecialchars($_POST['email'])
                 ."&nom=".htmlspecialchars($_POST['nom'])
@@ -48,26 +44,28 @@
             exit();
         }
         else {
-            // Tenter d'inscrire l'utilisateur dans la base
-            $sql = $dbh->prepare("INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) " . "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)");
-            
-            $sql->bindValue(":email", $email);
-            $sql->bindValue(":password",    $password);
-            $sql->bindValue(":prenom",      (empty($prenom))        ? NULL : $prenom);
-            $sql->bindValue(":nom",         (empty($nom))           ? NULL : $nom);
-            $sql->bindValue(":website",     (empty($website))       ? NULL : $website);
-            $sql->bindValue(":ville",       (empty($ville))         ? NULL : $ville);
-            $sql->bindValue(":tel",         (empty($tel))           ? NULL : $tel);
-            $sql->bindValue(":taille",      (empty($taille))        ? NULL : $taille);
-            $sql->bindValue(":profilepic",  (empty($profilepic))    ? NULL : $profilepic);
-            $sql->bindValue(":birthdate",   (empty($birthdate))     ? NULL : $birthdate);
-            $sql->bindValue(":couleur",     str_replace("#", "", $couleur) ); // On formate la couleur. On supprime le "#".
-            $sql->bindValue(":sexe",        ($sexe === 'H' || $sexe === 'F') ? $sexe : '');
+            // Tenter d'inscrire l'utilisateur dans la base  
+            $req = $dbh->executer("INSERT INTO users (email, password, nom, prenom, tel, website, sexe, birthdate, ville, taille, couleur, profilepic) " . "VALUES (:email, :password, :nom, :prenom, :tel, :website, :sexe, :birthdate, :ville, :taille, :couleur, :profilepic)", 
+                array( 
+                    ':email'        => $email,
+                    ':password'     => $password,
+                    ':prenom'       => (empty($prenom)) ? NULL : $prenom,
+                    ":nom"          => (empty($nom))           ? NULL : $nom,
+                    ":website"      => (empty($website))       ? NULL : $website,
+                    ":ville"        => (empty($ville))         ? NULL : $ville,
+                    ":tel"          => (empty($tel))           ? NULL : $tel,
+                    ":taille"       => (empty($taille))        ? NULL : $taille,
+                    ":profilepic"   => (empty($profilepic))    ? NULL : $profilepic,
+                    ":birthdate"    => (empty($birthdate))     ? NULL : $birthdate,
+                    ":couleur"      => str_replace("#", "", $couleur) ,
+                    ":sexe"         => ($sexe === 'H' || $sexe === 'F') ? $sexe : ''
+                ) 
+            );          
 
             // on tente d'exécuter la requête SQL, si la méthode renvoie faux alors une erreur a été rencontrée.
-            if (!$sql->execute()) {
+            if (!$req) {
                 echo "PDO::errorInfo():<br/>";
-                $err = $sql->errorInfo();
+                $err = $req->errorInfo();
                 print_r($err);
             } else {
 
@@ -75,13 +73,14 @@
                 session_start();
 
                 // ensuite on requête à nouveau la base pour l'utilisateur qui vient d'être inscrit, et 
-                $sql = $dbh->query("SELECT u.id, u.email, u.nom, u.prenom, u.couleur, u.profilepic FROM USERS u WHERE u.email='".$email."'");
-                if ($sql->rowCount()<1) {
+                $req = $dbh->executer("SELECT u.id, u.email, u.nom, u.prenom, u.couleur, u.profilepic FROM USERS u WHERE u.email='".$email."'" );          
+
+                if ($req->rowCount()<1) {
                     header("Location: error.php?erreur=".urlencode("un problème est survenu"));
                 }
                 else {
                     // on récupère la ligne qui nous intéresse avec $sql->fetch(), 
-                    $res = $sql->fetch();
+                    $res = $req->fetch();
 
                     // et on enregistre les données dans la session avec $_SESSION["..."]=...
                     $_SESSION["id"]         = $res["id"];

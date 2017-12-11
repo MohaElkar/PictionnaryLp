@@ -7,20 +7,21 @@
 	$picture	= stripslashes($_POST["picture"]);
 
 	try {
-	    // Connect to server and select database.
-	    //$dbh = new PDO('mysql:host=localhost;dbname=pictionnary', 'test', 'test');
+	    // Connexion à la base de donné.
 		$dbh = PDOConnexion::getInstance();
-	   
-	    $sql = $dbh->prepare("INSERT INTO drawings (id, id_user, commande, dessin) VALUES (NULL, :id_user, :commandes, :picture)");
-
-        $sql->bindValue(":id_user", $id_user);
-        $sql->bindValue(":commandes", $commandes);
-        $sql->bindValue(":picture", $picture);
+	    
+	    $req = $dbh->executer("INSERT INTO drawings (id, id_user, commande, dessin) VALUES (NULL, :id_user, :commandes, :picture)", 
+	    	array( 
+	    		':id_user' 		=> $id_user, 
+	    		':commandes' 	=> $commandes,
+	    		':picture' 		=> $picture,
+	    	) 
+	    );          
 
         // on tente d'exécuter la requête SQL, si la méthode renvoie faux alors une erreur a été rencontrée.
-        if (!$sql->execute()) {
+        if (!$req) {
             echo "PDO::errorInfo():<br/>";
-            $err = $sql->errorInfo();
+            $err = $req->errorInfo();
             print_r($err);
         } else {
         	// redirection vers la page paint avec message success.

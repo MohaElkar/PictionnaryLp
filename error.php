@@ -1,6 +1,10 @@
 <?php include("header.php"); ?>
+	
+	<section class="erreurPage">
+		<h2>Une erreur est survenu.</h2>
 
-	<h1>Une erreur est survenu.</h1>
+		<p>Message : <?php echo (isset($_GET["erreur"]) && !empty($_GET["erreur"])) ?  $_GET["erreur"] : 'Aucun message' ?></p>
+	</section>
+	
 
-	<p>Message : <?php echo (isset($_GET["erreur"]) && !empty($_GET["erreur"])) ?  $_GET["erreur"] : 'Aucun message' ?></p>
 <?php include("footer.php"); ?>
