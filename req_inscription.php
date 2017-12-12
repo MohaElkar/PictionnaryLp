@@ -1,5 +1,5 @@
 <?php
-    include("PDOConnexion.php");
+    include("class/PDOConnexion.php");
 
     // récupérer les éléments du formulaire
     // et se protéger contre l'injection MySQL (plus de détails ici: http://us.php.net/mysql_real_escape_string)

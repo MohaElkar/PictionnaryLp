@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include("PDOConnexion.php");
+	include("class/PDOConnexion.php");
 
 	$id_user 	= $_SESSION["id"]; 
 	$commandes 	= stripslashes($_POST["drawingCommands"]);

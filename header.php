@@ -1,6 +1,6 @@
 <?php 
 	session_start(); 
-	include("PDOConnexion.php");
+	include("class/PDOConnexion.php");
 ?>
 
 <!DOCTYPE html>  

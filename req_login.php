@@ -1,5 +1,5 @@
 <?php 
-	include("PDOConnexion.php");
+	include("class/PDOConnexion.php");
 
 	$email = stripslashes($_POST["email"]);
 	$password = stripslashes($_POST["password"]);
